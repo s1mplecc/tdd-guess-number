@@ -6,15 +6,21 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Answer {
-    private static final int NUMBER_SIZE = 4;
+    private static final int ANSWER_NUMBERS_SIZE = 4;
     private static final String SPACE = " ";
 
     private final String answer;
-    private final Set<Integer> answerNumbers = new LinkedHashSet<>(4);
+    private Set<Integer> answerNumbers = new LinkedHashSet<>(ANSWER_NUMBERS_SIZE);
 
     private Answer(String answer) throws AnswerIllegalException {
         this.answer = answer;
         parseAnswerString();
+        validate();
+    }
+
+    public Answer(Set<Integer> answerNumbers) throws AnswerIllegalException {
+        answer = "";
+        this.answerNumbers = answerNumbers;
         validate();
     }
 
@@ -23,8 +29,13 @@ public class Answer {
     }
 
     private void validate() throws AnswerIllegalException {
-        if (answerNumbers.size() != NUMBER_SIZE) {
+        if (answerNumbers.size() != ANSWER_NUMBERS_SIZE) {
             throw new AnswerIllegalException("Invalid input.");
+        }
+        for (Integer answerNumber : answerNumbers) {
+            if (answerNumber > 9 || answerNumber < 0) {
+                throw new AnswerIllegalException(answerNumber + " is out of range.");
+            }
         }
     }
 
