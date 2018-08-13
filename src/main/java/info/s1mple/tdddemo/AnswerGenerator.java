@@ -1,7 +1,5 @@
 package info.s1mple.tdddemo;
 
-import info.s1mple.tdddemo.exceptions.AnswerIllegalException;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -15,7 +13,7 @@ public class AnswerGenerator {
         this.randomIntGenerator = randomIntGenerator;
     }
 
-    public Answer generate() throws AnswerIllegalException {
+    public Answer generate() {
         while (answerNumbers.size() < ANSWER_NUMBERS_SIZE) {
             answerNumbers.add(randomIntGenerator.nextInt());
         }

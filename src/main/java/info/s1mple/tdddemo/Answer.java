@@ -9,17 +9,14 @@ public class Answer {
     private static final int ANSWER_NUMBERS_SIZE = 4;
     private static final String SPACE = " ";
 
-    private final String answer;
     private Set<Integer> answerNumbers = new LinkedHashSet<>(ANSWER_NUMBERS_SIZE);
 
-    private Answer(String answer) throws AnswerIllegalException {
-        this.answer = answer;
-        parseAnswerString();
+    private Answer(String answer) {
+        parseAnswerString(answer);
         validate();
     }
 
     public Answer(Set<Integer> answerNumbers) throws AnswerIllegalException {
-        answer = "";
         this.answerNumbers = answerNumbers;
         validate();
     }
@@ -39,7 +36,7 @@ public class Answer {
         }
     }
 
-    private void parseAnswerString() throws AnswerIllegalException {
+    private void parseAnswerString(String answer) throws AnswerIllegalException {
         for (String answerNumber : answer.split(SPACE)) {
             try {
                 answerNumbers.add(Integer.parseInt(answerNumber));
