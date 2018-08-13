@@ -8,7 +8,6 @@ import java.util.Set;
 public class Answer {
     private static final int ANSWER_NUMBERS_SIZE = 4;
     private static final String SPACE = " ";
-
     private Set<Integer> answerNumbers = new LinkedHashSet<>(ANSWER_NUMBERS_SIZE);
 
     private Answer(String answer) {
@@ -23,6 +22,10 @@ public class Answer {
 
     public static Answer createAnswer(String inputAnswer) throws AnswerIllegalException {
         return new Answer(inputAnswer);
+    }
+
+    public Set<Integer> answerNumbers() {
+        return answerNumbers;
     }
 
     private void validate() throws AnswerIllegalException {
