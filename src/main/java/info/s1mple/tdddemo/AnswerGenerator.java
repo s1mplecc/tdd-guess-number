@@ -1,5 +1,7 @@
 package info.s1mple.tdddemo;
 
+import com.google.inject.Inject;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ public class AnswerGenerator {
     private final Set<Integer> answerNumbers = new LinkedHashSet<>(ANSWER_NUMBERS_SIZE);
     private RandomIntGenerator randomIntGenerator;
 
+    @Inject
     public AnswerGenerator(RandomIntGenerator randomIntGenerator) {
         this.randomIntGenerator = randomIntGenerator;
     }

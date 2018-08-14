@@ -1,11 +1,15 @@
 package info.s1mple.tdddemo;
 
+
+import com.google.inject.Inject;
+
 public class GameController {
     private static final int MAX_TIMES = 6;
 
     private Game game;
     private GameView gameView;
 
+    @Inject
     public GameController(Game game, GameView gameView) {
         this.game = game;
         this.gameView = gameView;
