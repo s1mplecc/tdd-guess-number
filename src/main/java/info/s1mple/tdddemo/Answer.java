@@ -24,6 +24,11 @@ public class Answer {
         return new Answer(inputAnswer);
     }
 
+    @Override
+    public String toString() {
+        return answerNumbers.stream().map(x -> x.toString()).reduce((x, y) -> x + " " + y).orElse("");
+    }
+
     public Set<Integer> answerNumbers() {
         return answerNumbers;
     }

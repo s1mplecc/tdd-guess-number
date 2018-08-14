@@ -25,7 +25,7 @@ public class GameController {
         } while (notGameOver(guessResult));
 
         gameView.showMessage(guessResult.isCorrect() ? "successful" : "failed");
-        gameView.showMessage("The correct number is " + game.actualAnswer());
+        gameView.showMessage("The correct number is: " + game.actualAnswer());
     }
 
     private boolean notGameOver(GuessResult guessResult) {

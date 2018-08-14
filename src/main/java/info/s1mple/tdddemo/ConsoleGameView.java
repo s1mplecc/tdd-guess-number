@@ -13,7 +13,7 @@ public class ConsoleGameView implements GameView {
     public void showGuessHistory(List<GuessResult> guessResults) {
         System.out.println("------showGuessHistory------");
         for (GuessResult guessResult : guessResults) {
-            System.out.println(guessResult);
+            System.out.println(guessResult.result());
         }
     }
 
