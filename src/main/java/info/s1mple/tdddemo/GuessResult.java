@@ -7,14 +7,29 @@ import java.util.ArrayList;
 public class GuessResult {
     private boolean correct = false;
     private String result;
+    private Answer inputAnswer;
 
     public GuessResult() {
+
+    }
+
+    public final Answer inputAnswer() {
+        return inputAnswer;
+    }
+
+    public final String result() {
+        return result;
+    }
+
+    public boolean isCorrect() {
+        return this.correct;
     }
 
     public void analyzeResultBy(Answer actualAnswer, Answer inputAnswer) {
         ArrayList<Integer> actualAnswerNumbers = Lists.newArrayList(actualAnswer.answerNumbers());
         ArrayList<Integer> inputAnswerNumbers = Lists.newArrayList(inputAnswer.answerNumbers());
 
+        this.inputAnswer = inputAnswer;
         this.result = getACount(actualAnswerNumbers, inputAnswerNumbers) + "A"
                 + getBCount(actualAnswerNumbers, inputAnswerNumbers) + "B";
     }
@@ -36,13 +51,5 @@ public class GuessResult {
 
     private int getBCount(ArrayList<Integer> actualAnswerNumbers, ArrayList<Integer> inputAnswerNumbers) {
         return (int) actualAnswerNumbers.stream().filter(inputAnswerNumbers::contains).count();
-    }
-
-    public boolean isCorrect() {
-        return this.correct;
-    }
-
-    public final String result() {
-        return result;
     }
 }

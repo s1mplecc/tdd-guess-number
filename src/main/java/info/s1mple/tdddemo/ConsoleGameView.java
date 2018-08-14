@@ -11,10 +11,11 @@ public class ConsoleGameView implements GameView {
 
     @Override
     public void showGuessHistory(List<GuessResult> guessResults) {
-        System.out.println("---------Guess History---------");
+        System.out.println("---------Guess History----------");
         for (GuessResult guessResult : guessResults) {
-            System.out.println(guessResult.result());
+            System.out.println(guessResult.inputAnswer() + "       |  " + guessResult.result());
         }
+        System.out.println();
     }
 
     @Override

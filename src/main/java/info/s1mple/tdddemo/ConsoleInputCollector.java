@@ -7,7 +7,7 @@ public class ConsoleInputCollector implements InputCollector {
 
     @Override
     public Answer input() {
-        String inputAnswer = scan.nextLine();
+        String inputAnswer = scan.nextLine().trim();
         return Answer.createAnswer(inputAnswer);
     }
 }

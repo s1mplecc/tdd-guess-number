@@ -7,8 +7,8 @@ import info.s1mple.tdddemo.exceptions.AnswerIllegalException;
 public class GameController {
     private static final int MAX_TIMES = 6;
 
-    private Game game;
-    private GameView gameView;
+    private final Game game;
+    private final GameView gameView;
 
     @Inject
     public GameController(Game game, GameView gameView) {
