@@ -14,4 +14,8 @@ public class GameView {
             System.out.println(guessResult);
         }
     }
+
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
 }

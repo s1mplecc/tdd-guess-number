@@ -12,6 +12,10 @@ public class Game {
         guessHistory = new ArrayList<>(6);
     }
 
+    public final Answer actualAnswer() {
+        return actualAnswer;
+    }
+
     public GuessResult guess(Answer answer) {
         GuessResult result = new GuessResult();
         result.analyzeResultBy(actualAnswer, answer);

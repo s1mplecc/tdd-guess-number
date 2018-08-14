@@ -17,16 +17,38 @@ public class GameControllerTest {
     private AnswerGenerator mockGenerator;
 
     private GameController gameController;
+    private Answer actualAnswer;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        Answer actualAnswer = Answer.createAnswer("1 2 3 4");
+        actualAnswer = Answer.createAnswer("1 2 3 4");
 
         when(mockGenerator.generate()).thenReturn(actualAnswer);
         Game game = new Game(mockGenerator);
         gameController = new GameController(game, mockGameView);
+    }
+
+    @Test
+    public void should_end_game_and_display_successful_message_when_number_is_correct_in_first_round() {
+        when(mockCollector.input()).thenReturn(actualAnswer);
+
+        gameController.play(mockCollector);
+
+        verify(mockCollector, times(1)).input();
+        verify(mockGameView).showMessage("successful");
+    }
+
+    @Test
+    public void should_end_game_and_display_failure_message_once_times_reach_max_times() {
+        Answer errorAnswer = Answer.createAnswer("1 2 5 6");
+        when(mockCollector.input()).thenReturn(errorAnswer);
+
+        gameController.play(mockCollector);
+
+        verify(mockCollector, times(6)).input();
+        verify(mockGameView).showMessage("failed");
     }
 
     @Test
