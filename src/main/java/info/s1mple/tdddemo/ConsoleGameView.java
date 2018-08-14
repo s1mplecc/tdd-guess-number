@@ -5,13 +5,13 @@ import java.util.List;
 public class ConsoleGameView implements GameView {
     @Override
     public void showCurrentResult(GuessResult guessResult) {
-        System.out.println("------showCurrentResult------");
+        System.out.println("---------Current Result---------");
         System.out.println(guessResult.result());
     }
 
     @Override
     public void showGuessHistory(List<GuessResult> guessResults) {
-        System.out.println("------showGuessHistory------");
+        System.out.println("---------Guess History---------");
         for (GuessResult guessResult : guessResults) {
             System.out.println(guessResult.result());
         }

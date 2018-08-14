@@ -35,11 +35,11 @@ public class Answer {
 
     private void validate() throws AnswerIllegalException {
         if (answerNumbers.size() != ANSWER_NUMBERS_SIZE) {
-            throw new AnswerIllegalException("Invalid input.");
+            throw new AnswerIllegalException("number cannot be repeated");
         }
         for (Integer answerNumber : answerNumbers) {
             if (answerNumber > 9 || answerNumber < 0) {
-                throw new AnswerIllegalException(answerNumber + " is out of range.");
+                throw new AnswerIllegalException(answerNumber + " is out of range");
             }
         }
     }
@@ -49,7 +49,7 @@ public class Answer {
             try {
                 answerNumbers.add(Integer.parseInt(answerNumber));
             } catch (NumberFormatException ex) {
-                throw new AnswerIllegalException("Input: " + answerNumber + " is not a number.");
+                throw new AnswerIllegalException(answerNumber + " is not a number");
             }
         }
     }
