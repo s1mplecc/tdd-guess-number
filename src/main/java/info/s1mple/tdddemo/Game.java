@@ -12,9 +12,11 @@ public class Game {
         guessHistory = new ArrayList<>(6);
     }
 
-    public void guess(Answer answer) {
-        GuessResult result = GuessResult.analyze(actualAnswer, answer);
+    public GuessResult guess(Answer answer) {
+        GuessResult result = new GuessResult();
+        result.analyzeResultBy(actualAnswer, answer);
         guessHistory.add(result);
+        return result;
     }
 
     public final List<GuessResult> guessHistory() {

@@ -5,24 +5,21 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 
 public class GuessResult {
-    private final String result;
+    private boolean correct = false;
+    private String result;
 
-    private GuessResult(String result) {
-        this.result = result;
+    public GuessResult() {
     }
 
-    public static GuessResult analyze(Answer actualAnswer, Answer inputAnswer) {
+    public void analyzeResultBy(Answer actualAnswer, Answer inputAnswer) {
         ArrayList<Integer> actualAnswerNumbers = Lists.newArrayList(actualAnswer.answerNumbers());
         ArrayList<Integer> inputAnswerNumbers = Lists.newArrayList(inputAnswer.answerNumbers());
-        return new GuessResult(getACount(actualAnswerNumbers, inputAnswerNumbers) + "A"
-                + getBCount(actualAnswerNumbers, inputAnswerNumbers) + "B");
+
+        this.result = getACount(actualAnswerNumbers, inputAnswerNumbers) + "A"
+                + getBCount(actualAnswerNumbers, inputAnswerNumbers) + "B";
     }
 
-    private static int getBCount(ArrayList<Integer> actualAnswerNumbers, ArrayList<Integer> inputAnswerNumbers) {
-        return (int) actualAnswerNumbers.stream().filter(inputAnswerNumbers::contains).count();
-    }
-
-    private static int getACount(ArrayList<Integer> actualAnswerNumbers, ArrayList<Integer> inputAnswerNumbers) {
+    private int getACount(ArrayList<Integer> actualAnswerNumbers, ArrayList<Integer> inputAnswerNumbers) {
         int aCount = 0;
         for (int i = actualAnswerNumbers.size() - 1; i >= 0; i--) {
             if (actualAnswerNumbers.get(i).equals(inputAnswerNumbers.get(i))) {
@@ -31,7 +28,18 @@ public class GuessResult {
                 inputAnswerNumbers.remove(i);
             }
         }
+        if (aCount == 4) {
+            this.correct = true;
+        }
         return aCount;
+    }
+
+    private int getBCount(ArrayList<Integer> actualAnswerNumbers, ArrayList<Integer> inputAnswerNumbers) {
+        return (int) actualAnswerNumbers.stream().filter(inputAnswerNumbers::contains).count();
+    }
+
+    public boolean isCorrect() {
+        return this.correct;
     }
 
     public final String result() {
