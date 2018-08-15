@@ -33,6 +33,9 @@ TDD 猜数字游戏的示例代码
 单元测试使用 Junit 框架，Mockito 框架的`mock`注入类和返回数据，AssertJ 框架进行断言
 
 ```java
+private final Answer actualAnswer = Answer.createAnswer("1 2 3 4");
+private Game game;
+
 @Before
 public void setUp() throws Exception {
     AnswerGenerator answerGenerator = mock(AnswerGenerator.class);
@@ -42,24 +45,25 @@ public void setUp() throws Exception {
 
 @Test
 public void should_record_every_guess_result() {
+    // given
     game.guess(Answer.createAnswer("2 1 6 7"));
     game.guess(Answer.createAnswer("1 2 3 4"));
-    game.guess(Answer.createAnswer("1 2 6 7"));
-    game.guess(Answer.createAnswer("0 3 2 4"));
 
+    // when
     List<GuessResult> guessHistory = game.guessHistory();
 
-    assertThat(guessHistory.size()).isEqualTo(4);
+    // then
+    assertThat(guessHistory.size()).isEqualTo(2);
     assertThat(guessHistory.get(0).result()).isEqualTo("0A2B");
     assertThat(guessHistory.get(1).result()).isEqualTo("4A0B");
-    assertThat(guessHistory.get(2).result()).isEqualTo("2A0B");
-    assertThat(guessHistory.get(3).result()).isEqualTo("1A2B");
 }
 ```
 
 使用 Mockito 框架的`verify`方法是否按要求被调用
 
 ```java
+private Answer actualAnswer = Answer.createAnswer("1 2 3 4");
+
 @Test
 public void should_display_guess_message_when_guess_number_twice_and_second_answer_is_correct() {
     Answer errorAnswer = Answer.createAnswer("1 2 5 6");
