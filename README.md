@@ -56,7 +56,9 @@ public void should_record_every_guess_result() {
     assertThat(guessHistory.get(3).result()).isEqualTo("1A2B");
 }
 ```
-`verify`方法是否按要求被调用
+
+使用 Mockito 框架的`verify`方法是否按要求被调用
+
 ```java
 @Test
 public void should_display_guess_message_when_guess_number_twice_and_second_answer_is_correct() {
