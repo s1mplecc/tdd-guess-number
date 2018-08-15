@@ -5,11 +5,12 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 public class GuessResult {
-    private boolean correct = false;
-    private String result;
+    private boolean correct;
+    private Result result;
     private Answer inputAnswer;
 
     public GuessResult() {
+        this.correct = false;
     }
 
     public Answer inputAnswer() {
@@ -17,7 +18,7 @@ public class GuessResult {
     }
 
     public String result() {
-        return result;
+        return result.value();
     }
 
     public boolean isCorrect() {
@@ -26,11 +27,11 @@ public class GuessResult {
 
     public void analyzeBy(final Answer actualAnswer, final Answer inputAnswer) {
         this.inputAnswer = inputAnswer;
-        this.result = computeAndComposeResultBy(actualAnswer, inputAnswer);
-        // todo: change correct status -> true if 4A
+        this.result = computeResultBy(actualAnswer, inputAnswer);
+        changeCorrectBy(result.aCount());
     }
 
-    private String computeAndComposeResultBy(final Answer actualAnswer, final Answer inputAnswer) {
+    private Result computeResultBy(final Answer actualAnswer, final Answer inputAnswer) {
         List<Integer> inputAnswerNumbers = Lists.newArrayList(inputAnswer.answerNumbers());
         List<Integer> actualAnswerNumbers = Lists.newArrayList(actualAnswer.answerNumbers());
 
@@ -40,6 +41,30 @@ public class GuessResult {
         int bCount = (int) actualAnswerNumbers.stream()
                 .filter(inputAnswerNumbers::contains)
                 .count() - aCount;
-        return aCount + "A" + bCount + "B";
+        return new Result(aCount, bCount);
+    }
+
+    private void changeCorrectBy(int aCount) {
+        if (aCount == 4) {
+            correct = true;
+        }
+    }
+
+    private static final class Result {
+        private final String value;
+        private final int aCount;
+
+        private Result(int aCount, int bCount) {
+            this.aCount = aCount;
+            this.value = aCount + "A" + bCount + "B";
+        }
+
+        private String value() {
+            return value;
+        }
+
+        private int aCount() {
+            return aCount;
+        }
     }
 }

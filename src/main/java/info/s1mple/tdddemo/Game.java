@@ -19,9 +19,9 @@ public class Game {
         return actualAnswer;
     }
 
-    public GuessResult guess(Answer answer) {
+    public GuessResult guess(Answer inputAnswer) {
         GuessResult result = new GuessResult();
-        result.analyzeBy(actualAnswer, answer);
+        result.analyzeBy(actualAnswer, inputAnswer);
         guessHistory.add(result);
         return result;
     }
