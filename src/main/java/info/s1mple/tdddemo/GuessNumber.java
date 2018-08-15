@@ -1,6 +1,7 @@
 package info.s1mple.tdddemo;
 
 import com.google.inject.Injector;
+import info.s1mple.tdddemo.config.GuessNumberModule;
 
 import static com.google.inject.Guice.createInjector;
 

@@ -21,7 +21,7 @@ public class Game {
 
     public GuessResult guess(Answer answer) {
         GuessResult result = new GuessResult();
-        result.analyzeResultBy(actualAnswer, answer);
+        result.analyzeBy(actualAnswer, answer);
         guessHistory.add(result);
         return result;
     }
