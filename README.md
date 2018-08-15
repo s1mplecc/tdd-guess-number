@@ -32,3 +32,5 @@ TDD 猜数字游戏的示例代码
 
 ## 效果
 
+![截图1](./Screenshot1.png)
+![截图2](./Screenshot2.png)
