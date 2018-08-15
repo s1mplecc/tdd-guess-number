@@ -30,7 +30,7 @@ TDD 猜数字游戏的示例代码
 答案在游戏开始时随机生成。输入只有6次机会，在每次猜测时，程序应给出当前猜测的结果，以及之前所有猜测的数字和结果以供玩家参考。输入界面为控制台（Console），以避免太多与问题无关的界面代码。输入时，用空格分隔数字。
 
 ## 单元测试
-单元测试使用 Junit 框架，Mockito 框架的`mock`注入类和返回数据，AssertJ 框架进行断言
+单元测试使用 Junit 框架，Mockito 框架的`mock`注入类和返回数据，AssertJ 框架进行断言，遵循 Given-When-Then 模式
 
 ```java
 private final Answer actualAnswer = Answer.createAnswer("1 2 3 4");
@@ -59,7 +59,7 @@ public void should_record_every_guess_result() {
 }
 ```
 
-使用 Mockito 框架的`verify`方法是否按要求被调用
+使用 Mockito 框架的`verify`方法是否被正确调用
 
 ```java
 private Answer actualAnswer = Answer.createAnswer("1 2 3 4");
