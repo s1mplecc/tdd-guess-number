@@ -88,4 +88,5 @@ public void should_display_guess_message_when_guess_number_twice_and_second_answ
 ![截图2](./Screenshot2.png)
 
 当输入不满足要求时响应相关消息
+
 ![截图3](./Screenshot3.png)
